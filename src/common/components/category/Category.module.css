@@ -27,7 +27,7 @@
 }
 
 .nested {
-    padding: 0 18px;
+    padding-left: 18px;
     background-color: white;
     max-height: 0;
     overflow: hidden;

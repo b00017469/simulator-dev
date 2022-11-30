@@ -1,4 +1,6 @@
-export const codeCategories = [
+import { CategoryType } from '../common/types/Category';
+
+export const codeCategories: CategoryType[] = [
   {
     id: '1',
     title: 'CSS',
@@ -88,7 +90,7 @@ export const codeCategories = [
     title: 'HTML',
     subcategories: [
       {
-        id: '1-1',
+        id: '3-1',
         title: 'HTML теги',
         code: [
           {
@@ -106,7 +108,7 @@ export const codeCategories = [
         ],
       },
       {
-        id: '1-2',
+        id: '3-2',
         title: 'Форма',
         code: [
           {
