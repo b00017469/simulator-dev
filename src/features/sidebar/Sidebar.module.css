@@ -5,3 +5,25 @@
     border-radius: 5px;
 }
 
+.search {
+    width: 219px;
+    height: 36px;
+    border: 1px solid #E5ECEE;
+    border-radius: 2px;
+    outline: none;
+    background: url("../../assets/svg/searchIcon.svg") no-repeat left;
+    background-position-x: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    padding-left: 41px;
+    margin: 12px;
+}
+
+::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #CFD4DF;
+
+}

@@ -14,7 +14,7 @@ export const Sidebar = (): ReturnComponentType => {
     <div className={style.sidebar}>
       <h2>Категории</h2>
       <div>
-        <input type="search" />
+        <input type="search" placeholder="Поиск категории" className={style.search} />
         {codeCategories.map(category => (
           <Category
             key={category.id}
