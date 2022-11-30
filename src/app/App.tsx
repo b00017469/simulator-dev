@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { Header } from '../common/components/header/Header';
-import { Sidebar } from '../common/components/sidebar/Sidebar';
 import { ReturnComponentType } from '../common/types/ReturnComponentType';
+import { Sidebar } from '../features/sidebar/Sidebar';
 
 import style from './App.module.css';
 
