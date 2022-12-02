@@ -11,10 +11,12 @@ export const codeCategories: CategoryType[] = [
         code: [
           {
             row: 1,
-            content: `<!DOCTYPE html>\n<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>`,
+            content: `<!DOCTYPE html>
+    <html>
+        <head>
+           <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1">
+           <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1">
+              <style>`,
           },
           {
             row: 2,
