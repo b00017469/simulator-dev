@@ -84,7 +84,7 @@
       }
     ],
     "jsx-a11y/no-autofocus": [
-      2,
+      "off",
       {
         "ignoreNonDOM": true
       }

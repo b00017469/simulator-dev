@@ -16,6 +16,8 @@ export const Training = (): ReturnComponentType => {
   const [currentRightChar, setCurrentRightChar] = useState<string>('');
   const code = codeCategories[0].subcategories[0].code[0].content;
 
+  const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
+
   const onChangeUserCode = (userCode: string): void => {
     const currentUserChar = userCode.slice(-1);
     const currentRightChar = code.charAt(userCode.length - 1);
@@ -30,6 +32,7 @@ export const Training = (): ReturnComponentType => {
 
   const closeModal = (): void => {
     setIsOpen(false);
+    if (textAreaRef.current) textAreaRef.current.focus();
   };
 
   return (
@@ -38,13 +41,20 @@ export const Training = (): ReturnComponentType => {
 
       <Textarea value={code} readonly />
 
-      <Textarea value={userCode} onChangeFunc={onChangeUserCode} readonly={false} />
+      <Textarea
+        textAreaRef={textAreaRef}
+        isFocus={!modalIsOpen}
+        value={userCode}
+        onChangeFunc={onChangeUserCode}
+        readonly={false}
+      />
 
       <Modal show={modalIsOpen} enableBackground>
         <div>
-          <span>
-            Ошибка)) Вы набрали {currentUserChar}, а необходимо {currentRightChar}
-          </span>
+          <p className={styles.message}>
+            Ошибка)) Вы набрали <span>{currentUserChar}</span>, а необходимо{' '}
+            <span>{currentRightChar}</span>
+          </p>
           <Button type="button" onClick={closeModal} autoFocus={modalIsOpen}>
             ОК
           </Button>
