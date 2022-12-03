@@ -1,0 +1,26 @@
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    background: black;
+    opacity: 0.45;
+    z-index: 20;
+}
+
+.modal {
+    position: fixed;
+    top: 35vh;
+    left: 30vw;
+    width: 583px;
+    min-height: 200px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background: #FFFFFF;
+    z-index: 21;
+    border-radius: 5px;
+}

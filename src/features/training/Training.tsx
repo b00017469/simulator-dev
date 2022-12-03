@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-import ReactModal from 'react-modal';
-
 import { Button } from '../../common/components/button/Button';
+import { Modal } from '../../common/components/modal/Modal';
 import { Textarea } from '../../common/components/textarea/Textarea';
 import { ReturnComponentType } from '../../common/types/ReturnComponentType';
 import { formatText } from '../../common/utils/formatText';
@@ -41,17 +40,16 @@ export const Training = (): ReturnComponentType => {
 
       <Textarea value={userCode} onChangeFunc={onChangeUserCode} readonly={false} />
 
-      <ReactModal isOpen={modalIsOpen}>
+      <Modal show={modalIsOpen} enableBackground>
         <div>
           <span>
             Ошибка)) Вы набрали {currentUserChar}, а необходимо {currentRightChar}
           </span>
-          {/* eslint-disable-next-line jsx-a11y/no-autofocus */}
           <Button type="button" onClick={closeModal} autoFocus={modalIsOpen}>
             ОК
           </Button>
         </div>
-      </ReactModal>
+      </Modal>
 
       <Button type="button">Проверить</Button>
     </div>
