@@ -30,7 +30,7 @@
 
 .numbers {
     width: 51px;
-    min-height: 275px;
+    height: fit-content;
     border-right: 1px solid #B9BDC7;
     text-align: center;
     padding-top: 18px;
@@ -45,4 +45,10 @@
     color: #B9BDC7;
     content: counter(linenumber);
     display: block;
+}
+
+.code {
+    height: 100%;
+    padding: 18px 12px;
+    text-align: left;
 }

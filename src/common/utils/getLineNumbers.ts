@@ -1,8 +1,8 @@
-export const getLineNumbers = (text: string): string => {
-  let numbers = '';
+export const getLineNumbers = (text: string): string[] => {
+  const numbers = [];
 
   for (let i = 0; i < text.split('\n').length; i += 1) {
-    numbers += `${i + 1}.\n`;
+    numbers.push((i + 1).toString());
   }
 
   return numbers;

@@ -29,19 +29,19 @@ export const Textarea = ({
   return (
     <div className={styles.textField}>
       <div className={styles.numbers}>
-        <pre>{getLineNumbers(value)}</pre>
+        {getLineNumbers(value).map(line => (
+          <span key={line} />
+        ))}
       </div>
       <pre>
         <code>
-          <form>
-            <textarea
-              autoFocus={isFocus}
-              ref={textAreaRef}
-              value={value}
-              onChange={onChangeCallback}
-              readOnly={readonly}
-            />
-          </form>
+          <textarea
+            autoFocus={isFocus}
+            ref={textAreaRef}
+            value={value}
+            onChange={onChangeCallback}
+            readOnly={readonly}
+          />
         </code>
       </pre>
     </div>
