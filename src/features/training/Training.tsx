@@ -16,7 +16,7 @@ export const Training = (): ReturnComponentType => {
   const [currentRightChar, setCurrentRightChar] = useState<string>('');
   const [modalIsOpen, setIsOpen] = useState(false);
 
-  const code = codeCategories[0].subcategories[0].code[0].content;
+  const { code } = codeCategories[0].subcategories[0];
 
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { CategoryType } from '../../types/Category';
+import { CategoryType } from '../../../features/sidebar/reducer/sidebarReducer';
 import { ReturnComponentType } from '../../types/ReturnComponentType';
 
 import style from './Category.module.css';
@@ -8,6 +8,7 @@ import { SubCategory } from './subCategory/SubCategory';
 
 type Props = {
   category: CategoryType;
+  isToggle: boolean;
   isSelected: boolean;
   setSelectedId: (id: string) => void;
   idSelectedSubItem: string;
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export const Category = ({
+  isToggle,
   category,
   isSelected,
   setSelectedId,
@@ -31,6 +33,10 @@ export const Category = ({
     setSelectedId(category.id);
     setToggle(!toggle);
   };
+
+  useEffect(() => {
+    setToggle(isToggle);
+  }, [isToggle]);
 
   return (
     <div>

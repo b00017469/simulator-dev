@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SubCategoryType } from '../../../types/Category';
+import { SubCategoryType } from '../../../../features/sidebar/reducer/sidebarReducer';
 import { ReturnComponentType } from '../../../types/ReturnComponentType';
 
 import style from './SubCategory.module.css';

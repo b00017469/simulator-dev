@@ -1,52 +1,37 @@
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useDispatch } from 'react-redux';
 
 import { Category } from '../../common/components/category/Category';
-import { useDebounce } from '../../common/hooks/useDebounce';
-import { CategoryType } from '../../common/types/Category';
+import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types/ReturnComponentType';
-import { codeCategories } from '../../db/codeCategories';
 
+import { getCategories } from './reducer/sidebarReducer';
+import { Search } from './search/Search';
 import style from './Sidebar.module.css';
 
-const timeWait = 500;
-
 export const Sidebar = (): ReturnComponentType => {
+  const dispatch = useDispatch();
   const [idSelectedItem, setIdSelectedItem] = useState<string>('');
   const [idSelectedSubItem, setIdSelectedSubItem] = useState('');
-  const [searchValue, setSearchValue] = useState<string>('');
-  const [categories, setCategories] = useState<CategoryType[]>(codeCategories);
 
-  const debounceText = useDebounce<string>(searchValue, timeWait);
-
-  const onChangeTextSearch = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSearchValue(event.target.value);
-  };
+  const categories = useAppSelector(state => state.sidebar.categories);
+  const isToggle = useAppSelector(state => state.sidebar.isToggle);
 
   useEffect(() => {
-    if (debounceText) {
-      setCategories(
-        categories.filter(category =>
-          category.title.toUpperCase().includes(debounceText.toUpperCase()),
-        ),
-      );
-    } else setCategories(codeCategories);
-  }, [debounceText]);
+    dispatch(getCategories());
+  }, [dispatch]);
 
   return (
     <div className={style.sidebar}>
       <h2>Категории</h2>
       <div>
-        <input
-          type="search"
-          placeholder="Поиск категории"
-          className={style.search}
-          value={searchValue}
-          onChange={onChangeTextSearch}
-        />
+        <Search />
         {categories.map(category => (
           <Category
             key={category.id}
             category={category}
+            isToggle={isToggle}
             isSelected={idSelectedItem === category.id}
             setSelectedId={setIdSelectedItem}
             idSelectedSubItem={idSelectedSubItem}
