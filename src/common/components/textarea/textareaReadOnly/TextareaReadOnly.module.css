@@ -30,7 +30,8 @@
 
 .numbers {
     width: 51px;
-    height: fit-content;
+    /*height: fit-content;*/
+    min-height: 475px;
     border-right: 1px solid #B9BDC7;
     text-align: center;
     padding-top: 18px;

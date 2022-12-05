@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { SubCategoryType } from '../../../../features/sidebar/reducer/sidebarReducer';
+import { getCode } from '../../../../features/training/reducer/trainingReducer';
 import { ReturnComponentType } from '../../../types/ReturnComponentType';
 
 import style from './SubCategory.module.css';
@@ -18,11 +21,14 @@ export const SubCategory = ({
   setSelectedId,
   setSelectedSubId,
 }: Props): ReturnComponentType => {
+  const dispatch = useDispatch();
+
   const categoryStyle = `${style.item} ${isSelected ? style.active : ''}`;
 
   const openCategory = (): void => {
     setSelectedSubId(subCategory.id);
     setSelectedId();
+    dispatch(getCode(subCategory));
   };
 
   return (

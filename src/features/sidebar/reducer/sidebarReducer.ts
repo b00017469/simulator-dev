@@ -10,6 +10,7 @@ const initialState = {
           id: '',
           title: '',
           code: '',
+          maxUsersSpeed: '',
         },
       ],
     },
@@ -63,6 +64,7 @@ export type SubCategoryType = {
   id: string;
   title: string;
   code: string;
+  maxUsersSpeed: string;
 };
 
 export type SidebarReducerActions =
