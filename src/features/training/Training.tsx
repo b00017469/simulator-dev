@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Button } from '../../common/components/button/Button';
 import { Textarea } from '../../common/components/textarea/Textarea';
 import { TextareaReadOnly } from '../../common/components/textarea/textareaReadOnly/TextareaReadOnly';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
@@ -8,6 +7,7 @@ import { ReturnComponentType } from '../../common/types/ReturnComponentType';
 import { formatText } from '../../common/utils/formatText';
 
 import { MessageModal } from './messageModal/MessageModal';
+import { StatsPanel } from './statsPanel/StatsPanel';
 import styles from './Training.module.css';
 
 export const Training = (): ReturnComponentType => {
@@ -37,6 +37,16 @@ export const Training = (): ReturnComponentType => {
     if (textAreaRef.current) textAreaRef.current.focus();
   };
 
+  const isEndTraining =
+    trainingCode.code.length === userCode.length && userCode.length > 0;
+
+  useEffect(() => {
+    setUserCode('');
+    if (textAreaRef.current) textAreaRef.current.focus();
+  }, [trainingCode]);
+
+  useEffect(() => setIsOpen(isEndTraining), [isEndTraining]);
+
   return (
     <div className={styles.trainingPanel}>
       <h2>{trainingCode.title}</h2>
@@ -47,7 +57,7 @@ export const Training = (): ReturnComponentType => {
         textAreaRef={textAreaRef}
         value={userCode}
         onChangeFunc={onChangeUserCode}
-        readonly={false}
+        readonly={!trainingCode.code.length}
       />
 
       <MessageModal
@@ -55,9 +65,14 @@ export const Training = (): ReturnComponentType => {
         currentRightChar={currentRightChar}
         closeModal={closeModal}
         modalIsOpen={modalIsOpen}
+        isEndTraining={isEndTraining}
       />
 
-      <Button type="button">Проверить</Button>
+      <StatsPanel
+        charactersCount={userCode.length}
+        isPause={modalIsOpen}
+        isEndTraining={isEndTraining}
+      />
     </div>
   );
 };

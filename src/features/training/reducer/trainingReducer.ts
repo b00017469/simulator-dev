@@ -5,7 +5,7 @@ const initialState = {
   trainingCode: {
     id: '',
     title: 'Категория не выбрана',
-    code: "I'll be the fastest coder!",
+    code: '',
     maxUsersSpeed: '',
   },
   stats: {
@@ -23,6 +23,9 @@ export const trainingReducer = (
     case 'TRAINING/GET-CODE': {
       return { ...state, trainingCode: action.payload };
     }
+    case 'TRAINING/SET-SPEED': {
+      return { ...state, stats: { ...state.stats, speedTyping: action.payload } };
+    }
     default:
       return state;
   }
@@ -30,7 +33,11 @@ export const trainingReducer = (
 
 export const getCode = (trainingCode: SubCategoryType) =>
   ({ type: 'TRAINING/GET-CODE', payload: trainingCode } as const);
+export const setSpeed = (speed: string) =>
+  ({ type: 'TRAINING/SET-SPEED', payload: speed } as const);
 
 type InitialState = typeof initialState;
 
-export type TrainingReducerActions = ReturnType<typeof getCode>;
+export type TrainingReducerActions =
+  | ReturnType<typeof getCode>
+  | ReturnType<typeof setSpeed>;
