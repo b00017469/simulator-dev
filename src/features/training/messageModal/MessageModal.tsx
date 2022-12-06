@@ -4,6 +4,7 @@ import { Button } from '../../../common/components/button/Button';
 import { Modal } from '../../../common/components/modal/Modal';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
+import { getResultMessage } from '../../../common/utils/getResultMessage';
 
 import style from './MessageModal.module.css';
 
@@ -23,6 +24,9 @@ export const MessageModal = ({
   isEndTraining,
 }: Props): ReturnComponentType => {
   const speedTyping = useAppSelector(state => state.training.stats.speedTyping);
+  const maxUsersSpeed = useAppSelector(
+    state => state.training.trainingCode.maxUsersSpeed,
+  );
 
   return (
     <Modal show={modalIsOpen} enableBackground>
@@ -30,21 +34,27 @@ export const MessageModal = ({
         <div>
           <div>Ваш результат</div>
           <div>
-            Ваша скорость набора кода {speedTyping} символов в минуту - это быстрее, чем
-            80% пользователей! Отличный результат!
+            Ваша скорость набора кода {speedTyping} символов в минуту.
+            {getResultMessage(speedTyping, maxUsersSpeed)}
           </div>
+          <Button type="button" onClick={closeModal}>
+            Пройти заново
+          </Button>
+          <Button type="button" onClick={closeModal}>
+            Следующий пример
+          </Button>
         </div>
       ) : (
         <div>
-          <p className={style.message}>
+          <div className={style.message}>
             Ошибка)) Вы набрали <span>{currentUserChar}</span>, а необходимо{' '}
             <span>{currentRightChar}</span>
-          </p>
+          </div>
+          <Button type="button" onClick={closeModal} autoFocus={modalIsOpen}>
+            Продолжить
+          </Button>
         </div>
       )}
-      <Button type="button" onClick={closeModal} autoFocus={modalIsOpen}>
-        ОК
-      </Button>
     </Modal>
   );
 };

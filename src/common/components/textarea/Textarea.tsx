@@ -10,7 +10,7 @@ type Props = {
   onChangeFunc?: (value: string) => void;
   readonly: boolean;
   isFocus?: boolean;
-  textAreaRef?: LegacyRef<HTMLTextAreaElement> | undefined;
+  textAreaRef?: LegacyRef<HTMLTextAreaElement>;
 };
 
 export const Textarea = ({
@@ -41,6 +41,7 @@ export const Textarea = ({
             value={value}
             onChange={onChangeCallback}
             readOnly={readonly}
+            onPaste={e => e.preventDefault()}
           />
         </code>
       </pre>

@@ -229,4 +229,16 @@ alert(sumSalaries(company)); // 6700`,
       },
     ],
   },
+  {
+    id: '4',
+    title: 'React',
+    subcategories: [
+      {
+        id: '4-1',
+        title: 'Простой пример',
+        maxUsersSpeed: '250',
+        code: 'const firstCode = "Hello world"',
+      },
+    ],
+  },
 ];
