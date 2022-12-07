@@ -3,7 +3,8 @@ import React from 'react';
 import { Button } from '../../../../common/components/button/Button';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types/ReturnComponentType';
-import { getResultMessage } from '../../../../common/utils/getResultMessage';
+import { getResultMistakesMessage } from '../../../../common/utils/getResultMistakesMessage';
+import { getResultSpeedMessage } from '../../../../common/utils/getResultSpeedMessage';
 
 import style from './Message.module.css';
 
@@ -20,6 +21,7 @@ export const FinalMessage = ({
   const maxUsersSpeed = useAppSelector(
     state => state.training.trainingCode.maxUsersSpeed,
   );
+  const mistakesCount = useAppSelector(state => state.training.stats.mistakesCount);
 
   const restart = (): void => {
     clearUserCode();
@@ -31,8 +33,9 @@ export const FinalMessage = ({
       <div className={style.header}>Ваш результат</div>
 
       <div className={style.message}>
-        Ваша скорость набора кода {speedTyping} символов в минуту.
-        {getResultMessage(speedTyping, maxUsersSpeed)}
+        `{getResultMistakesMessage(mistakesCount)}
+        Твоя скорость набора кода {speedTyping} символов в минуту.{' '}
+        {getResultSpeedMessage(speedTyping, maxUsersSpeed)}.`
       </div>
 
       <div className={style.button}>

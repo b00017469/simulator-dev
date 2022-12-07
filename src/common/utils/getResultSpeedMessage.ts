@@ -1,6 +1,9 @@
 import { speedMessage } from '../enum/speedMessage';
 
-export const getResultMessage = (speedTyping: string, maxUsersSpeed: string): string => {
+export const getResultSpeedMessage = (
+  speedTyping: string,
+  maxUsersSpeed: string,
+): string => {
   const result = Number(speedTyping) / Number(maxUsersSpeed);
 
   // eslint-disable-next-line no-magic-numbers

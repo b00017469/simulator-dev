@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Nullable } from '../../../common/types/Nullable';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
 import { calculateSpeed } from '../../../common/utils/calculateSpeed';
-import { setSpeed } from '../reducer/trainingReducer';
+import { setMistakesCount, setSpeed } from '../reducer/trainingReducer';
 
 import style from './StatsPanel.module.css';
 
@@ -13,12 +13,14 @@ type Props = {
   charactersCount: number;
   isPause: boolean;
   isEndTraining: boolean;
+  mistakesCount: number;
 };
 
 export const StatsPanel = ({
   charactersCount,
   isPause,
   isEndTraining,
+  mistakesCount,
 }: Props): ReturnComponentType => {
   const dispatch = useDispatch();
 
@@ -50,14 +52,21 @@ export const StatsPanel = ({
   }, [isPause]);
 
   useEffect(() => {
-    if (isEndTraining) dispatch(setSpeed(currentSpeed.toString()));
+    if (isEndTraining) {
+      dispatch(setMistakesCount(mistakesCount.toString()));
+      dispatch(setSpeed(currentSpeed.toString()));
+    }
   }, [dispatch, isEndTraining]);
 
   return (
     <div className={style.panel}>
-      <p>
+      <div>
         <span>Скорость набора: {currentSpeed} </span> символов в минуту.
-      </p>
+      </div>
+
+      <div>
+        <span>Количество ошибок: {mistakesCount} </span> ошибок.
+      </div>
     </div>
   );
 };

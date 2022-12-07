@@ -14,6 +14,7 @@ export const Training = (): ReturnComponentType => {
   const [userCode, setUserCode] = useState<string>('');
   const [currentUserChar, setCurrentUserChar] = useState<string>('');
   const [currentRightChar, setCurrentRightChar] = useState<string>('');
+  const [mistakesCount, setMistakesCount] = useState<number>(0);
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const trainingCode = useAppSelector(state => state.training.trainingCode);
@@ -29,6 +30,7 @@ export const Training = (): ReturnComponentType => {
     }
     setCurrentUserChar(currentUserChar);
     setCurrentRightChar(currentRightChar);
+    setMistakesCount(mistakesCount + 1);
     setIsOpen(true);
   };
 
@@ -42,6 +44,8 @@ export const Training = (): ReturnComponentType => {
 
   useEffect(() => {
     setUserCode('');
+    setMistakesCount(0);
+
     if (textAreaRef.current) textAreaRef.current.focus();
   }, [trainingCode]);
 
@@ -73,6 +77,7 @@ export const Training = (): ReturnComponentType => {
         charactersCount={userCode.length}
         isPause={modalIsOpen}
         isEndTraining={isEndTraining}
+        mistakesCount={mistakesCount}
       />
     </div>
   );

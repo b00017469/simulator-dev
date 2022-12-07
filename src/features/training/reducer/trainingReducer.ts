@@ -10,7 +10,7 @@ const initialState = {
   },
   stats: {
     speedTyping: '0',
-    countMistakes: '0',
+    mistakesCount: '0',
     countAttempts: '0',
   },
 };
@@ -26,6 +26,9 @@ export const trainingReducer = (
     case 'TRAINING/SET-SPEED': {
       return { ...state, stats: { ...state.stats, speedTyping: action.payload } };
     }
+    case 'TRAINING/SET-MISTAKES-COUNT': {
+      return { ...state, stats: { ...state.stats, mistakesCount: action.payload } };
+    }
     default:
       return state;
   }
@@ -35,9 +38,12 @@ export const getCode = (trainingCode: SubCategoryType) =>
   ({ type: 'TRAINING/GET-CODE', payload: trainingCode } as const);
 export const setSpeed = (speed: string) =>
   ({ type: 'TRAINING/SET-SPEED', payload: speed } as const);
+export const setMistakesCount = (mistakesCount: string) =>
+  ({ type: 'TRAINING/SET-MISTAKES-COUNT', payload: mistakesCount } as const);
 
 type InitialState = typeof initialState;
 
 export type TrainingReducerActions =
   | ReturnType<typeof getCode>
-  | ReturnType<typeof setSpeed>;
+  | ReturnType<typeof setSpeed>
+  | ReturnType<typeof setMistakesCount>;
