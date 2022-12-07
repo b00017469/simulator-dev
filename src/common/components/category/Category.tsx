@@ -43,6 +43,7 @@ export const Category = ({
       <button className={categoryStyle} type="button" onClick={openCategory}>
         {category.title}
       </button>
+
       <div className={nestedElementsStyle}>
         {category.subcategories.map(sub => (
           <SubCategory

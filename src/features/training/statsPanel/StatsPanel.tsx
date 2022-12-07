@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 
+import { Nullable } from '../../../common/types/Nullable';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
 import { calculateSpeed } from '../../../common/utils/calculateSpeed';
 import { setSpeed } from '../reducer/trainingReducer';
@@ -20,8 +21,9 @@ export const StatsPanel = ({
   isEndTraining,
 }: Props): ReturnComponentType => {
   const dispatch = useDispatch();
-  const [startTime, setStartTime] = useState<number | null>(null);
-  const [startPauseTime, setStartPauseTime] = useState<number | null>(null);
+
+  const [startTime, setStartTime] = useState<Nullable<number>>(null);
+  const [startPauseTime, setStartPauseTime] = useState<Nullable<number>>(null);
   const [pauseTime, setPauseTime] = useState<number>(0);
   const [currentSpeed, setCurrentSpeed] = useState<number>(0);
 

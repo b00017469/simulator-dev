@@ -33,6 +33,7 @@ export const Textarea = ({
           <span key={line} />
         ))}
       </div>
+
       <pre>
         <code>
           <textarea

@@ -17,6 +17,7 @@ export const TextareaReadOnly = ({ value }: Props): ReturnComponentType => {
           <span key={line} defaultValue={line} />
         ))}
       </div>
+
       <pre>
         <code>
           <p className={styles.code}>{value}</p>

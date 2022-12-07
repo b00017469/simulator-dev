@@ -39,6 +39,7 @@ export const FinalMessage = ({
         <Button type="button" onClick={restart}>
           Пройти заново
         </Button>
+
         <Button type="button" onClick={closeModal}>
           Следующий пример
         </Button>

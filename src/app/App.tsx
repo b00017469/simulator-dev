@@ -11,8 +11,10 @@ const App = (): ReturnComponentType => {
   return (
     <div className={style.app}>
       <Header />
+
       <div className={style.body}>
         <Sidebar />
+
         <Training />
       </div>
     </div>

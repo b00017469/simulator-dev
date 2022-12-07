@@ -25,6 +25,7 @@ export const Sidebar = (): ReturnComponentType => {
   return (
     <div className={style.sidebar}>
       <h2>Категории</h2>
+
       <div>
         <Search />
         {categories.map(category => (
