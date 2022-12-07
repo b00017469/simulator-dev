@@ -6,6 +6,8 @@ import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
 import { calculateSpeed } from '../../../common/utils/calculateSpeed';
 import { setSpeed } from '../reducer/trainingReducer';
 
+import style from './StatsPanel.module.css';
+
 type Props = {
   charactersCount: number;
   isPause: boolean;
@@ -27,6 +29,7 @@ export const StatsPanel = ({
     if (charactersCount === 0) {
       setCurrentSpeed(0);
       setStartTime(null);
+      setPauseTime(0);
     }
 
     if (charactersCount === 1) setStartTime(Date.now());
@@ -49,9 +52,10 @@ export const StatsPanel = ({
   }, [dispatch, isEndTraining]);
 
   return (
-    <div>
-      Скорость набора:
-      <span> {currentSpeed} </span>символов в минуту.
+    <div className={style.panel}>
+      <p>
+        <span>Скорость набора: {currentSpeed} </span> символов в минуту.
+      </p>
     </div>
   );
 };

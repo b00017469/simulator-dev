@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { Button } from '../../../common/components/button/Button';
 import { Modal } from '../../../common/components/modal/Modal';
-import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
-import { getResultMessage } from '../../../common/utils/getResultMessage';
 
-import style from './MessageModal.module.css';
+import { FinalMessage } from './messages/FinalMessage';
+import { MistakeMessage } from './messages/MistakeMessage';
 
 type Props = {
   currentUserChar?: string;
   currentRightChar?: string;
   closeModal: () => void;
+  clearUserCode: () => void;
   modalIsOpen: boolean;
   isEndTraining: boolean;
 };
@@ -22,38 +21,19 @@ export const MessageModal = ({
   closeModal,
   modalIsOpen,
   isEndTraining,
+  clearUserCode,
 }: Props): ReturnComponentType => {
-  const speedTyping = useAppSelector(state => state.training.stats.speedTyping);
-  const maxUsersSpeed = useAppSelector(
-    state => state.training.trainingCode.maxUsersSpeed,
-  );
-
   return (
     <Modal show={modalIsOpen} enableBackground>
       {isEndTraining ? (
-        <div>
-          <div>Ваш результат</div>
-          <div>
-            Ваша скорость набора кода {speedTyping} символов в минуту.
-            {getResultMessage(speedTyping, maxUsersSpeed)}
-          </div>
-          <Button type="button" onClick={closeModal}>
-            Пройти заново
-          </Button>
-          <Button type="button" onClick={closeModal}>
-            Следующий пример
-          </Button>
-        </div>
+        <FinalMessage closeModal={closeModal} clearUserCode={clearUserCode} />
       ) : (
-        <div>
-          <div className={style.message}>
-            Ошибка)) Вы набрали <span>{currentUserChar}</span>, а необходимо{' '}
-            <span>{currentRightChar}</span>
-          </div>
-          <Button type="button" onClick={closeModal} autoFocus={modalIsOpen}>
-            Продолжить
-          </Button>
-        </div>
+        <MistakeMessage
+          closeModal={closeModal}
+          modalIsOpen={modalIsOpen}
+          currentUserChar={currentUserChar}
+          currentRightChar={currentRightChar}
+        />
       )}
     </Modal>
   );

@@ -66,6 +66,7 @@ export const Training = (): ReturnComponentType => {
         closeModal={closeModal}
         modalIsOpen={modalIsOpen}
         isEndTraining={isEndTraining}
+        clearUserCode={() => setUserCode('')}
       />
 
       <StatsPanel

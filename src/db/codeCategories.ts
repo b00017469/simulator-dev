@@ -183,7 +183,7 @@ if (year < 2015) {
   default:
     alert( 'We hope that this page looks ok!' );
 }`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: '90',
       },
       {
         id: '3-3',
@@ -200,7 +200,7 @@ for (let key in user) {
   // значения ключей
   alert( user[key] ); // John, 30, true
 }`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: '60',
       },
       {
         id: '3-4',
@@ -225,7 +225,7 @@ function sumSalaries(department) {
   }
 }
 alert(sumSalaries(company)); // 6700`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: '90',
       },
     ],
   },
@@ -236,7 +236,7 @@ alert(sumSalaries(company)); // 6700`,
       {
         id: '4-1',
         title: 'Простой пример',
-        maxUsersSpeed: '250',
+        maxUsersSpeed: '100',
         code: 'const firstCode = "Hello world"',
       },
     ],

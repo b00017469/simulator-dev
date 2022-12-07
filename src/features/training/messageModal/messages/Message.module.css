@@ -1,0 +1,45 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    height: 250px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.message {
+    padding: 15px;
+}
+
+.message span {
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+    min-width: 16px;
+    height: 24px;
+    background-color: #f8bcc8;
+    border: 1px solid #ad687a;
+
+}
+
+.header {
+    padding: 15px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 24px;
+    border-bottom: 1px solid #ad687a;
+}
+
+.button {
+    padding: 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button button{
+    margin-left: 25px;
+}
