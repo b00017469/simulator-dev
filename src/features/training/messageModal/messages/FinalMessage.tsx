@@ -33,9 +33,9 @@ export const FinalMessage = ({
       <div className={style.header}>Ваш результат</div>
 
       <div className={style.message}>
-        `{getResultMistakesMessage(mistakesCount)}
+        {getResultMistakesMessage(mistakesCount)}
         Твоя скорость набора кода {speedTyping} символов в минуту.{' '}
-        {getResultSpeedMessage(speedTyping, maxUsersSpeed)}.`
+        {getResultSpeedMessage(speedTyping, maxUsersSpeed)}.
       </div>
 
       <div className={style.button}>

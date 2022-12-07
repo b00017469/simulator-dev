@@ -19,6 +19,9 @@ export const Training = (): ReturnComponentType => {
 
   const trainingCode = useAppSelector(state => state.training.trainingCode);
 
+  const isEndTraining =
+    trainingCode.code.length === userCode.length && userCode.length > 0;
+
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const onChangeUserCode = (userCode: string): void => {
@@ -39,8 +42,10 @@ export const Training = (): ReturnComponentType => {
     if (textAreaRef.current) textAreaRef.current.focus();
   };
 
-  const isEndTraining =
-    trainingCode.code.length === userCode.length && userCode.length > 0;
+  const clearUserCode = (): void => {
+    setUserCode('');
+    setMistakesCount(0);
+  };
 
   useEffect(() => {
     setUserCode('');
@@ -70,7 +75,7 @@ export const Training = (): ReturnComponentType => {
         closeModal={closeModal}
         modalIsOpen={modalIsOpen}
         isEndTraining={isEndTraining}
-        clearUserCode={() => setUserCode('')}
+        clearUserCode={clearUserCode}
       />
 
       <StatsPanel
