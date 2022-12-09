@@ -27,7 +27,7 @@ p {
   padding-left: 10px; /* Отступ от линии слева до текста  */
   padding-bottom: 10px; /* Отступ от линии снизу до текста  */
 }`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: 150,
       },
       {
         id: '1-2',
@@ -51,7 +51,7 @@ p {
    <h1>Заголовок 2</h1>
  </body>
 </html>`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: 150,
       },
       {
         id: '1-3',
@@ -87,7 +87,7 @@ p {
     }
    }
   </style>`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: 150,
       },
     ],
   },
@@ -110,7 +110,7 @@ p {
 
 </body>
 </html>`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: 150,
       },
       {
         id: '2-2',
@@ -144,7 +144,7 @@ function myFunction() {
 
 </body>
 </html>`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: 150,
       },
     ],
   },
@@ -163,7 +163,7 @@ if (year < 2015) {
 } else {
   alert( 'Верно!' );
 }`,
-        maxUsersSpeed: '150',
+        maxUsersSpeed: 150,
       },
       {
         id: '3-2',
@@ -183,7 +183,7 @@ if (year < 2015) {
   default:
     alert( 'We hope that this page looks ok!' );
 }`,
-        maxUsersSpeed: '90',
+        maxUsersSpeed: 90,
       },
       {
         id: '3-3',
@@ -200,7 +200,7 @@ for (let key in user) {
   // значения ключей
   alert( user[key] ); // John, 30, true
 }`,
-        maxUsersSpeed: '60',
+        maxUsersSpeed: 60,
       },
       {
         id: '3-4',
@@ -225,7 +225,7 @@ function sumSalaries(department) {
   }
 }
 alert(sumSalaries(company)); // 6700`,
-        maxUsersSpeed: '90',
+        maxUsersSpeed: 90,
       },
     ],
   },
@@ -236,7 +236,7 @@ alert(sumSalaries(company)); // 6700`,
       {
         id: '4-1',
         title: 'Простой пример',
-        maxUsersSpeed: '100',
+        maxUsersSpeed: 100,
         code: 'const firstCode = "Hello world"',
       },
     ],

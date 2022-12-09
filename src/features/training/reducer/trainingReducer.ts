@@ -6,12 +6,12 @@ const initialState = {
     id: '',
     title: 'Категория не выбрана',
     code: '',
-    maxUsersSpeed: '',
+    maxUsersSpeed: 0,
   },
   stats: {
-    speedTyping: '0',
-    mistakesCount: '0',
-    countAttempts: '0',
+    speedTyping: 0,
+    mistakesCount: 0,
+    countAttempts: 0,
   },
 };
 
@@ -36,9 +36,9 @@ export const trainingReducer = (
 
 export const getCode = (trainingCode: SubCategoryType) =>
   ({ type: 'TRAINING/GET-CODE', payload: trainingCode } as const);
-export const setSpeed = (speed: string) =>
+export const setSpeed = (speed: number) =>
   ({ type: 'TRAINING/SET-SPEED', payload: speed } as const);
-export const setMistakesCount = (mistakesCount: string) =>
+export const setMistakesCount = (mistakesCount: number) =>
   ({ type: 'TRAINING/SET-MISTAKES-COUNT', payload: mistakesCount } as const);
 
 type InitialState = typeof initialState;

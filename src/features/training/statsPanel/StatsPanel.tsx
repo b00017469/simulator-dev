@@ -53,10 +53,10 @@ export const StatsPanel = ({
 
   useEffect(() => {
     if (isEndTraining) {
-      dispatch(setMistakesCount(mistakesCount.toString()));
-      dispatch(setSpeed(currentSpeed.toString()));
+      dispatch(setMistakesCount(mistakesCount));
+      dispatch(setSpeed(currentSpeed));
     }
-  }, [dispatch, isEndTraining]);
+  }, [isEndTraining]);
 
   return (
     <div className={style.panel}>

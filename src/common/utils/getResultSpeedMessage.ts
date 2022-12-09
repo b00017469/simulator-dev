@@ -1,10 +1,10 @@
 import { speedMessage } from '../enum/speedMessage';
 
 export const getResultSpeedMessage = (
-  speedTyping: string,
-  maxUsersSpeed: string,
+  speedTyping: number,
+  maxUsersSpeed: number,
 ): string => {
-  const result = Number(speedTyping) / Number(maxUsersSpeed);
+  const result = speedTyping / maxUsersSpeed;
 
   // eslint-disable-next-line no-magic-numbers
   if (result < 0.3) return speedMessage.BAD;

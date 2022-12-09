@@ -10,7 +10,7 @@ const initialState = {
           id: '',
           title: '',
           code: '',
-          maxUsersSpeed: '',
+          maxUsersSpeed: 0,
         },
       ],
     },
@@ -64,7 +64,7 @@ export type SubCategoryType = {
   id: string;
   title: string;
   code: string;
-  maxUsersSpeed: string;
+  maxUsersSpeed: number;
 };
 
 export type CategorySelectorReducerActions =
