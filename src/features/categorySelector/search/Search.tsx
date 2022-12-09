@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
-import { getCategories, setCategoriesSearch } from '../reducer/sidebarReducer';
+import { getCategories, setCategoriesSearch } from '../reducer/categorySelectorReducer';
 
 import style from './Search.module.css';
 

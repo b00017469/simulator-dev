@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { SubCategoryType } from '../../../../features/sidebar/reducer/sidebarReducer';
+import { SubCategoryType } from '../../../../features/categorySelector/reducer/categorySelectorReducer';
 import { getCode } from '../../../../features/training/reducer/trainingReducer';
 import { ReturnComponentType } from '../../../types/ReturnComponentType';
 

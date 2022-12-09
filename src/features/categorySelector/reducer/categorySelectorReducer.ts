@@ -15,42 +15,42 @@ const initialState = {
       ],
     },
   ],
-  isToggle: false,
+  isToggleSearchedCategory: false,
 };
 
-export const sidebarReducer = (
+export const categorySelectorReducer = (
   state: InitialState = initialState,
-  action: SidebarReducerActions,
+  action: CategorySelectorReducerActions,
 ): InitialState => {
   switch (action.type) {
-    case 'SIDEBAR/GET-CATEGORIES': {
-      return { ...state, categories: codeCategories, isToggle: false };
+    case 'SELECTOR/GET-CATEGORIES': {
+      return { ...state, categories: codeCategories, isToggleSearchedCategory: false };
     }
-    case 'SIDEBAR/SET-CATEGORIES-SEARCH': {
+    case 'SELECTOR/SET-CATEGORIES-SEARCH': {
       const foundCategories = codeCategories.reduce(
         (result: CategoryType[], category: CategoryType) => {
-          const subcategory = category.subcategories.filter(sub =>
+          const subcategories = category.subcategories.filter(sub =>
             sub.title.toUpperCase().includes(action.payload.categoryTitle.toUpperCase()),
           );
 
-          if (subcategory.length > 0)
-            result.push({ ...category, subcategories: [...subcategory] });
+          if (subcategories.length > 0)
+            result.push({ ...category, subcategories: [...subcategories] });
 
           return result;
         },
         [],
       );
 
-      return { ...state, categories: foundCategories, isToggle: true };
+      return { ...state, categories: foundCategories, isToggleSearchedCategory: true };
     }
     default:
       return state;
   }
 };
 
-export const getCategories = () => ({ type: 'SIDEBAR/GET-CATEGORIES' } as const);
+export const getCategories = () => ({ type: 'SELECTOR/GET-CATEGORIES' } as const);
 export const setCategoriesSearch = (categoryTitle: string) =>
-  ({ type: 'SIDEBAR/SET-CATEGORIES-SEARCH', payload: { categoryTitle } } as const);
+  ({ type: 'SELECTOR/SET-CATEGORIES-SEARCH', payload: { categoryTitle } } as const);
 
 type InitialState = typeof initialState;
 
@@ -67,6 +67,6 @@ export type SubCategoryType = {
   maxUsersSpeed: string;
 };
 
-export type SidebarReducerActions =
+export type CategorySelectorReducerActions =
   | ReturnType<typeof getCategories>
   | ReturnType<typeof setCategoriesSearch>;

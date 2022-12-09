@@ -1,10 +1,10 @@
 import { combineReducers, createStore } from 'redux';
 
-import { sidebarReducer } from '../features/sidebar/reducer/sidebarReducer';
+import { categorySelectorReducer } from '../features/categorySelector/reducer/categorySelectorReducer';
 import { trainingReducer } from '../features/training/reducer/trainingReducer';
 
 const rootReducer = combineReducers({
-  sidebar: sidebarReducer,
+  selector: categorySelectorReducer,
   training: trainingReducer,
 });
 

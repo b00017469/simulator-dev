@@ -1,4 +1,4 @@
-import { SubCategoryType } from '../../sidebar/reducer/sidebarReducer';
+import { SubCategoryType } from '../../categorySelector/reducer/categorySelectorReducer';
 
 const initialState = {
   userId: 'testUserId',
