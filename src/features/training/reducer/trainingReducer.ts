@@ -20,13 +20,13 @@ export const trainingReducer = (
   action: TrainingReducerActions,
 ): InitialState => {
   switch (action.type) {
-    case 'TRAINING/GET-CODE': {
+    case 'TRAINING/CODE-GOT': {
       return { ...state, trainingCode: action.payload };
     }
-    case 'TRAINING/SET-SPEED': {
+    case 'TRAINING/SPEED-CHANGED': {
       return { ...state, stats: { ...state.stats, speedTyping: action.payload } };
     }
-    case 'TRAINING/SET-MISTAKES-COUNT': {
+    case 'TRAINING/MISTAKES-COUNT-CHANGED': {
       return { ...state, stats: { ...state.stats, mistakesCount: action.payload } };
     }
     default:
@@ -35,11 +35,11 @@ export const trainingReducer = (
 };
 
 export const getCode = (trainingCode: SubCategoryType) =>
-  ({ type: 'TRAINING/GET-CODE', payload: trainingCode } as const);
+  ({ type: 'TRAINING/CODE-GOT', payload: trainingCode } as const);
 export const setSpeed = (speed: number) =>
-  ({ type: 'TRAINING/SET-SPEED', payload: speed } as const);
+  ({ type: 'TRAINING/SPEED-CHANGED', payload: speed } as const);
 export const setMistakesCount = (mistakesCount: number) =>
-  ({ type: 'TRAINING/SET-MISTAKES-COUNT', payload: mistakesCount } as const);
+  ({ type: 'TRAINING/MISTAKES-COUNT-CHANGED', payload: mistakesCount } as const);
 
 type InitialState = typeof initialState;
 

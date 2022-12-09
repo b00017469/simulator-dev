@@ -1,5 +1,3 @@
-import { codeCategories } from '../../../db/codeCategories';
-
 const initialState = {
   categories: [
     {
@@ -23,11 +21,15 @@ export const categorySelectorReducer = (
   action: CategorySelectorReducerActions,
 ): InitialState => {
   switch (action.type) {
-    case 'SELECTOR/GET-CATEGORIES': {
-      return { ...state, categories: codeCategories, isToggleSearchedCategory: false };
+    case 'SELECTOR/CATEGORIES-GOT': {
+      return {
+        ...state,
+        categories: action.payload.data,
+        isToggleSearchedCategory: false,
+      };
     }
-    case 'SELECTOR/SET-CATEGORIES-SEARCH': {
-      const foundCategories = codeCategories.reduce(
+    case 'SELECTOR/CATEGORIES-RESULT-SEARCH': {
+      const foundCategories = action.payload.data.reduce(
         (result: CategoryType[], category: CategoryType) => {
           const subcategories = category.subcategories.filter(sub =>
             sub.title.toUpperCase().includes(action.payload.categoryTitle.toUpperCase()),
@@ -48,9 +50,13 @@ export const categorySelectorReducer = (
   }
 };
 
-export const getCategories = () => ({ type: 'SELECTOR/GET-CATEGORIES' } as const);
-export const setCategoriesSearch = (categoryTitle: string) =>
-  ({ type: 'SELECTOR/SET-CATEGORIES-SEARCH', payload: { categoryTitle } } as const);
+export const getCategories = (data: CategoryType[]) =>
+  ({ type: 'SELECTOR/CATEGORIES-GOT', payload: { data } } as const);
+export const setCategoriesSearch = (categoryTitle: string, data: CategoryType[]) =>
+  ({
+    type: 'SELECTOR/CATEGORIES-RESULT-SEARCH',
+    payload: { categoryTitle, data },
+  } as const);
 
 type InitialState = typeof initialState;
 

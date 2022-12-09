@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
+import { codeCategories } from '../../../db/codeCategories';
 import { getCategories, setCategoriesSearch } from '../reducer/categorySelectorReducer';
 
 import style from './Search.module.css';
@@ -21,8 +22,8 @@ export const Search = (): ReturnComponentType => {
 
   useEffect(() => {
     if (debounceText) {
-      dispatch(setCategoriesSearch(debounceText));
-    } else dispatch(getCategories());
+      dispatch(setCategoriesSearch(debounceText, codeCategories));
+    } else dispatch(getCategories(codeCategories));
   }, [debounceText, dispatch]);
 
   return (

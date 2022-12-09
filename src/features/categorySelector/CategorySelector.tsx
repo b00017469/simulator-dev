@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Category } from '../../common/components/category/Category';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types/ReturnComponentType';
+import { codeCategories } from '../../db/codeCategories';
 
 import style from './CategorySelector.module.css';
 import { getCategories } from './reducer/categorySelectorReducer';
@@ -21,7 +22,7 @@ export const CategorySelector = (): ReturnComponentType => {
   );
 
   useEffect(() => {
-    dispatch(getCategories());
+    dispatch(getCategories(codeCategories));
   }, [dispatch]);
 
   return (
