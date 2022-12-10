@@ -13,6 +13,8 @@ const initialState = {
       ],
     },
   ],
+  idSelectedCategory: '',
+  idSelectedSubcategory: '',
   isToggleSearchedCategory: false,
 };
 
@@ -45,6 +47,12 @@ export const categorySelectorReducer = (
 
       return { ...state, categories: foundCategories, isToggleSearchedCategory: true };
     }
+    case 'SELECTOR/CATEGORY-SELECTED': {
+      return { ...state, idSelectedCategory: action.payload.idCategory };
+    }
+    case 'SELECTOR/SUBCATEGORY-SELECTED': {
+      return { ...state, idSelectedSubcategory: action.payload.idSubcategory };
+    }
     default:
       return state;
   }
@@ -52,11 +60,15 @@ export const categorySelectorReducer = (
 
 export const getCategories = (data: CategoryType[]) =>
   ({ type: 'SELECTOR/CATEGORIES-GOT', payload: { data } } as const);
-export const setCategoriesSearch = (categoryTitle: string, data: CategoryType[]) =>
+export const searchCategories = (categoryTitle: string, data: CategoryType[]) =>
   ({
     type: 'SELECTOR/CATEGORIES-RESULT-SEARCH',
     payload: { categoryTitle, data },
   } as const);
+export const selectCategory = (idCategory: string) =>
+  ({ type: 'SELECTOR/CATEGORY-SELECTED', payload: { idCategory } } as const);
+export const selectSubcategory = (idSubcategory: string) =>
+  ({ type: 'SELECTOR/SUBCATEGORY-SELECTED', payload: { idSubcategory } } as const);
 
 type InitialState = typeof initialState;
 
@@ -75,4 +87,6 @@ export type SubCategoryType = {
 
 export type CategorySelectorReducerActions =
   | ReturnType<typeof getCategories>
-  | ReturnType<typeof setCategoriesSearch>;
+  | ReturnType<typeof searchCategories>
+  | ReturnType<typeof selectCategory>
+  | ReturnType<typeof selectSubcategory>;

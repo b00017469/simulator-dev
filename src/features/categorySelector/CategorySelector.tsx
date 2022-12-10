@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 
@@ -13,13 +13,8 @@ import { Search } from './search/Search';
 
 export const CategorySelector = (): ReturnComponentType => {
   const dispatch = useDispatch();
-  const [idSelectedItem, setIdSelectedItem] = useState<string>('');
-  const [idSelectedSubItem, setIdSelectedSubItem] = useState('');
 
   const categories = useAppSelector(state => state.selector.categories);
-  const isToggleSearchedCategory = useAppSelector(
-    state => state.selector.isToggleSearchedCategory,
-  );
 
   useEffect(() => {
     dispatch(getCategories(codeCategories));
@@ -31,16 +26,9 @@ export const CategorySelector = (): ReturnComponentType => {
 
       <div>
         <Search />
+
         {categories.map(category => (
-          <Category
-            key={category.id}
-            category={category}
-            isToggleSearchedCategory={isToggleSearchedCategory}
-            isSelected={idSelectedItem === category.id}
-            setSelectedId={setIdSelectedItem}
-            idSelectedSubItem={idSelectedSubItem}
-            setIdSelectedSubItem={setIdSelectedSubItem}
-          />
+          <Category key={category.id} category={category} />
         ))}
       </div>
     </div>

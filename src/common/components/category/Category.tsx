@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-import { CategoryType } from '../../../features/categorySelector/reducer/categorySelectorReducer';
+import { useDispatch } from 'react-redux';
+
+import {
+  CategoryType,
+  selectCategory,
+  selectSubcategory,
+} from '../../../features/categorySelector/reducer/categorySelectorReducer';
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types/ReturnComponentType';
 
 import style from './Category.module.css';
@@ -8,29 +15,25 @@ import { SubCategory } from './subCategory/SubCategory';
 
 type Props = {
   category: CategoryType;
-  isToggleSearchedCategory: boolean;
-  isSelected: boolean;
-  setSelectedId: (id: string) => void;
-  idSelectedSubItem: string;
-  setIdSelectedSubItem: (id: string) => void;
 };
 
-export const Category = ({
-  isToggleSearchedCategory,
-  category,
-  isSelected,
-  setSelectedId,
-  idSelectedSubItem,
-  setIdSelectedSubItem,
-}: Props): ReturnComponentType => {
+export const Category = ({ category }: Props): ReturnComponentType => {
+  const dispatch = useDispatch();
   const [toggle, setToggle] = useState(false);
 
-  const categoryStyle = `${style.accordion} ${isSelected ? style.active : ''}`;
+  const isToggleSearchedCategory = useAppSelector(
+    state => state.selector.isToggleSearchedCategory,
+  );
+  const idSelectedCategory = useAppSelector(state => state.selector.idSelectedCategory);
+
+  const categoryStyle = `${style.accordion} ${
+    idSelectedCategory === category.id ? style.active : ''
+  }`;
   const nestedElementsStyle = `${style.nested} ${toggle ? style.toggle : ''}`;
 
   const openCategory = (): void => {
-    setIdSelectedSubItem('');
-    setSelectedId(category.id);
+    dispatch(selectSubcategory(''));
+    dispatch(selectCategory(category.id));
     setToggle(!toggle);
   };
 
@@ -46,13 +49,7 @@ export const Category = ({
 
       <div className={nestedElementsStyle}>
         {category.subcategories.map(sub => (
-          <SubCategory
-            subCategory={sub}
-            key={sub.id}
-            isSelected={idSelectedSubItem === sub.id}
-            setSelectedSubId={setIdSelectedSubItem}
-            setSelectedId={() => setSelectedId(category.id)}
-          />
+          <SubCategory key={sub.id} subCategory={sub} />
         ))}
       </div>
     </div>
