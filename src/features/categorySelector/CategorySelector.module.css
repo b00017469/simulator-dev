@@ -1,5 +1,11 @@
-.sidebar {
+.wrapper {
     width: 243px;
+}
+
+.selector {
+    width: 243px;
+    min-height: 550px;
+    margin: 24px 0;
     background: #FFFFFF;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
     border-radius: 5px;

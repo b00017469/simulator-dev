@@ -21,10 +21,10 @@ export const CategorySelector = (): ReturnComponentType => {
   }, [dispatch]);
 
   return (
-    <div className={style.selector}>
+    <div className={style.wrapper}>
       <h2>Категории</h2>
 
-      <div>
+      <div className={style.selector}>
         <Search />
 
         {categories.map(category => (
