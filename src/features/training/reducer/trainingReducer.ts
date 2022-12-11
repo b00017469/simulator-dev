@@ -43,6 +43,16 @@ export const trainingReducer = (
         userCode: { ...state.userCode, currentMistakesCount: action.payload },
       };
     }
+    case 'TRAINING/CURRENT-CHARS-CHANGED': {
+      return {
+        ...state,
+        userCode: {
+          ...state.userCode,
+          currentUserChar: action.payload.currentUserChar,
+          currentRightChar: action.payload.currentRightChar,
+        },
+      };
+    }
     case 'TRAINING/STATS-UPDATED': {
       const speed =
         action.payload.speedTyping > state.stats.bestUserSpeed
@@ -63,6 +73,9 @@ export const trainingReducer = (
         },
       };
     }
+    case 'TRAINING/USER-CODE-CLEARED': {
+      return { ...state, userCode: { ...initialState.userCode } };
+    }
     default:
       return state;
   }
@@ -76,8 +89,14 @@ export const setSpeed = (speed: number) =>
   ({ type: 'TRAINING/SPEED-CHANGED', payload: speed } as const);
 export const setMistakesCount = (mistakesCount: number) =>
   ({ type: 'TRAINING/MISTAKES-COUNT-CHANGED', payload: mistakesCount } as const);
+export const setCurrentChars = (currentUserChar: string, currentRightChar: string) =>
+  ({
+    type: 'TRAINING/CURRENT-CHARS-CHANGED',
+    payload: { currentUserChar, currentRightChar },
+  } as const);
 export const updateStats = (speedTyping: number, mistakesCount: number) =>
   ({ type: 'TRAINING/STATS-UPDATED', payload: { speedTyping, mistakesCount } } as const);
+export const clearUserCode = () => ({ type: 'TRAINING/USER-CODE-CLEARED' } as const);
 
 type InitialState = typeof initialState;
 
@@ -86,4 +105,6 @@ export type TrainingReducerActions =
   | ReturnType<typeof setUserCodeText>
   | ReturnType<typeof setSpeed>
   | ReturnType<typeof setMistakesCount>
-  | ReturnType<typeof updateStats>;
+  | ReturnType<typeof setCurrentChars>
+  | ReturnType<typeof updateStats>
+  | ReturnType<typeof clearUserCode>;

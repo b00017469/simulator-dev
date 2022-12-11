@@ -1,22 +1,23 @@
 import React from 'react';
 
+import { useDispatch } from 'react-redux';
+
 import { Button } from '../../../../common/components/button/Button';
 import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types/ReturnComponentType';
 import { getResultMistakesMessage } from '../../../../common/utils/getResultMistakesMessage';
 import { getResultSpeedMessage } from '../../../../common/utils/getResultSpeedMessage';
+import { clearUserCode } from '../../reducer/trainingReducer';
 
 import style from './Message.module.css';
 
 type Props = {
   closeModal: () => void;
-  clearUserCode: () => void;
 };
 
-export const FinalMessage = ({
-  closeModal,
-  clearUserCode,
-}: Props): ReturnComponentType => {
+export const FinalMessage = ({ closeModal }: Props): ReturnComponentType => {
+  const dispatch = useDispatch();
+
   const speedTyping = useAppSelector(state => state.training.userCode.currentSpeed);
   const maxUsersSpeed = useAppSelector(
     state => state.training.trainingCode.maxUsersSpeed,
@@ -26,7 +27,7 @@ export const FinalMessage = ({
   );
 
   const restart = (): void => {
-    clearUserCode();
+    dispatch(clearUserCode());
     closeModal();
   };
 

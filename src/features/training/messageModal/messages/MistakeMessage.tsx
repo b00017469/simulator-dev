@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Button } from '../../../../common/components/button/Button';
+import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types/ReturnComponentType';
 
 import style from './Message.module.css';
@@ -8,16 +9,19 @@ import style from './Message.module.css';
 type Props = {
   closeModal: () => void;
   modalIsOpen: boolean;
-  currentUserChar: string | undefined;
-  currentRightChar: string | undefined;
 };
 
 export const MistakeMessage = ({
   closeModal,
   modalIsOpen,
-  currentUserChar,
-  currentRightChar,
 }: Props): ReturnComponentType => {
+  const currentUserChar = useAppSelector(
+    state => state.training.userCode.currentUserChar,
+  );
+  const currentRightChar = useAppSelector(
+    state => state.training.userCode.currentRightChar,
+  );
+
   return (
     <div className={style.wrapper}>
       <div className={style.header}>Ошибка!</div>

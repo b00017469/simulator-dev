@@ -9,15 +9,18 @@ import { ReturnComponentType } from '../../common/types/ReturnComponentType';
 import { formatText } from '../../common/utils/formatText';
 
 import { MessageModal } from './messageModal/MessageModal';
-import { setMistakesCount, setSpeed, setUserCodeText } from './reducer/trainingReducer';
+import {
+  clearUserCode,
+  setCurrentChars,
+  setMistakesCount,
+  setUserCodeText,
+} from './reducer/trainingReducer';
 import { StatsPanel } from './statsPanel/StatsPanel';
 import styles from './Training.module.css';
 
 export const Training = (): ReturnComponentType => {
   const dispatch = useDispatch();
 
-  const [currentUserChar, setCurrentUserChar] = useState<string>('');
-  const [currentRightChar, setCurrentRightChar] = useState<string>('');
   const [modalIsOpen, setIsOpen] = useState(false);
 
   const { trainingCodeText, title } = useAppSelector(
@@ -26,7 +29,6 @@ export const Training = (): ReturnComponentType => {
   const { userCodeText, currentMistakesCount } = useAppSelector(
     state => state.training.userCode,
   );
-
   const isEndTraining =
     trainingCodeText.length === userCodeText.length && userCodeText.length > 0;
 
@@ -38,13 +40,11 @@ export const Training = (): ReturnComponentType => {
 
     if (currentUserChar === currentRightChar) {
       dispatch(setUserCodeText(formatText(trainingCodeText, userCode)));
-
-      return;
+    } else {
+      dispatch(setCurrentChars(currentUserChar, currentRightChar));
+      dispatch(setMistakesCount(currentMistakesCount + 1));
+      setIsOpen(true);
     }
-    setCurrentUserChar(currentUserChar);
-    setCurrentRightChar(currentRightChar);
-    dispatch(setMistakesCount(currentMistakesCount + 1));
-    setIsOpen(true);
   };
 
   const closeModal = (): void => {
@@ -52,14 +52,8 @@ export const Training = (): ReturnComponentType => {
     if (textAreaRef.current) textAreaRef.current.focus();
   };
 
-  const clearUserCode = (): void => {
-    dispatch(setUserCodeText(''));
-    dispatch(setMistakesCount(0));
-    dispatch(setSpeed(0));
-  };
-
   useEffect(() => {
-    clearUserCode();
+    dispatch(clearUserCode());
 
     if (textAreaRef.current) textAreaRef.current.focus();
   }, [trainingCodeText]);
@@ -80,12 +74,9 @@ export const Training = (): ReturnComponentType => {
       />
 
       <MessageModal
-        currentUserChar={currentUserChar}
-        currentRightChar={currentRightChar}
         closeModal={closeModal}
         modalIsOpen={modalIsOpen}
         isEndTraining={isEndTraining}
-        clearUserCode={clearUserCode}
       />
 
       <StatsPanel

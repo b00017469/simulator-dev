@@ -7,23 +7,19 @@ import styles from './Textarea.module.css';
 
 type Props = {
   value: string;
-  onChangeFunc?: (value: string) => void;
+  onChangeFunc: (value: string) => void;
   readonly: boolean;
-  isFocus?: boolean;
-  textAreaRef?: LegacyRef<HTMLTextAreaElement>;
+  textAreaRef: LegacyRef<HTMLTextAreaElement>;
 };
 
 export const Textarea = ({
   value,
   onChangeFunc,
   readonly,
-  isFocus,
   textAreaRef,
 }: Props): ReturnComponentType => {
   const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>): void => {
-    if (onChangeFunc) {
-      onChangeFunc(e.currentTarget.value);
-    }
+    onChangeFunc(e.currentTarget.value);
   };
 
   return (
@@ -37,7 +33,6 @@ export const Textarea = ({
       <pre>
         <code>
           <textarea
-            autoFocus={isFocus}
             ref={textAreaRef}
             value={value}
             onChange={onChangeCallback}
