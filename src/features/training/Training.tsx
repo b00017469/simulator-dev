@@ -21,7 +21,7 @@ import styles from './Training.module.css';
 export const Training = (): ReturnComponentType => {
   const dispatch = useDispatch();
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setIsOpenModal] = useState(false);
 
   const { trainingCodeText, title } = useAppSelector(
     state => state.training.trainingCode,
@@ -43,12 +43,12 @@ export const Training = (): ReturnComponentType => {
     } else {
       dispatch(setCurrentChars(currentUserChar, currentRightChar));
       dispatch(setMistakesCount(currentMistakesCount + 1));
-      setIsOpen(true);
+      setIsOpenModal(true);
     }
   };
 
   const closeModal = (): void => {
-    setIsOpen(false);
+    setIsOpenModal(false);
     if (textAreaRef.current) textAreaRef.current.focus();
   };
 
@@ -56,9 +56,9 @@ export const Training = (): ReturnComponentType => {
     dispatch(clearUserCode());
 
     if (textAreaRef.current) textAreaRef.current.focus();
-  }, [trainingCodeText]);
+  }, [dispatch, trainingCodeText]);
 
-  useEffect(() => setIsOpen(isEndTraining), [isEndTraining]);
+  useEffect(() => setIsOpenModal(isEndTraining), [isEndTraining]);
 
   return (
     <div className={styles.trainingPanel}>

@@ -1,18 +1,16 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
-
+import { useAppDispatch } from '../../../common/hooks/useAppDispatch';
 import { useDebounce } from '../../../common/hooks/useDebounce';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
-import { codeCategories } from '../../../db/codeCategories';
-import { getCategories, searchCategories } from '../reducer/categorySelectorReducer';
+import { categoriesData } from '../reducer/categorySelectorReducer';
 
 import style from './Search.module.css';
 
 const timeWait = 500;
 
 export const Search = (): ReturnComponentType => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [searchValue, setSearchValue] = useState<string>('');
   const debounceText = useDebounce<string>(searchValue, timeWait);
 
@@ -21,9 +19,7 @@ export const Search = (): ReturnComponentType => {
   };
 
   useEffect(() => {
-    if (debounceText) {
-      dispatch(searchCategories(debounceText, codeCategories));
-    } else dispatch(getCategories(codeCategories));
+    dispatch(categoriesData(debounceText));
   }, [debounceText, dispatch]);
 
   return (

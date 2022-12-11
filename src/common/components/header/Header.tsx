@@ -14,6 +14,8 @@ export const Header = (): ReturnComponentType => {
       <div>
         Simulator<span>Dev</span>
       </div>
+
+      {/* <ModeSelection /> */}
     </header>
   );
 };

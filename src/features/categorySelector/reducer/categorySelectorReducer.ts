@@ -1,3 +1,6 @@
+import { categoriesAPI } from '../../../api/categoriesAPI';
+import { AppThunk } from '../../../store/store';
+
 const initialState = {
   categories: [
     {
@@ -69,6 +72,20 @@ export const selectCategory = (idCategory: string) =>
   ({ type: 'SELECTOR/CATEGORY-SELECTED', payload: { idCategory } } as const);
 export const selectSubcategory = (idSubcategory: string) =>
   ({ type: 'SELECTOR/SUBCATEGORY-SELECTED', payload: { idSubcategory } } as const);
+
+export const categoriesData =
+  (searchText?: string): AppThunk =>
+  async dispatch => {
+    try {
+      const data = (await categoriesAPI.getCategoriesData()) as CategoryType[];
+
+      if (searchText) dispatch(searchCategories(searchText, data));
+      else dispatch(getCategories(data));
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.warn(error);
+    }
+  };
 
 type InitialState = typeof initialState;
 
