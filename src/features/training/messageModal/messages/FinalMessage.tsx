@@ -17,11 +17,13 @@ export const FinalMessage = ({
   closeModal,
   clearUserCode,
 }: Props): ReturnComponentType => {
-  const speedTyping = useAppSelector(state => state.training.stats.speedTyping);
+  const speedTyping = useAppSelector(state => state.training.userCode.currentSpeed);
   const maxUsersSpeed = useAppSelector(
     state => state.training.trainingCode.maxUsersSpeed,
   );
-  const mistakesCount = useAppSelector(state => state.training.stats.mistakesCount);
+  const mistakesCount = useAppSelector(
+    state => state.training.userCode.currentMistakesCount,
+  );
 
   const restart = (): void => {
     clearUserCode();
@@ -35,7 +37,7 @@ export const FinalMessage = ({
       <div className={style.message}>
         {getResultMistakesMessage(mistakesCount)}
         Твоя скорость набора кода {speedTyping} символов в минуту.{' '}
-        {getResultSpeedMessage(speedTyping, maxUsersSpeed)}.
+        {getResultSpeedMessage(speedTyping, maxUsersSpeed)}
       </div>
 
       <div className={style.button}>

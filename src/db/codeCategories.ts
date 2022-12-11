@@ -6,7 +6,7 @@ export const codeCategories = [
       {
         id: '1-1',
         title: 'Пример кода CSS',
-        code: `body {
+        trainingCodeText: `body {
   font-family: Arial, Verdana,  sans-serif; /* Семейство шрифтов */
   font-size: 11pt; /* Размер основного шрифта в пунктах  */
   background-color: #f0f0f0; /* Цвет фона веб-страницы */
@@ -32,7 +32,7 @@ p {
       {
         id: '1-2',
         title: 'Разные методы добавления стилей CSS',
-        code: `<!DOCTYPE HTML>
+        trainingCodeText: `<!DOCTYPE HTML>
 <html  lang="eng">
  <head>
   <meta charset="utf-8">
@@ -56,7 +56,7 @@ p {
       {
         id: '1-3',
         title: 'Стили для разных типов носителей',
-        code: ` <title>Типы носителей</title>
+        trainingCodeText: ` <title>Типы носителей</title>
   <style>
    @media screen { /* Стиль для отображения в браузере */
     BODY {
@@ -98,7 +98,7 @@ p {
       {
         id: '2-1',
         title: 'Базовая структура',
-        code: `<!DOCTYPE html>
+        trainingCodeText: `<!DOCTYPE html>
 <html  lang="eng">
 <head>
 <title>Page Title</title>
@@ -115,7 +115,7 @@ p {
       {
         id: '2-2',
         title: 'Простой пример HTML',
-        code: `<!DOCTYPE html>
+        trainingCodeText: `<!DOCTYPE html>
 <html lang="eng">
 <body>
 
@@ -155,7 +155,7 @@ function myFunction() {
       {
         id: '3-1',
         title: 'Конструкция if else',
-        code: `let year = prompt('В каком году была опубликована спецификация ECMAScript-2015?', '');
+        trainingCodeText: `let year = prompt('В каком году была опубликована спецификация ECMAScript-2015?', '');
 if (year < 2015) {
   alert( 'Это слишком рано...' );
 } else if (year > 2015) {
@@ -168,7 +168,7 @@ if (year < 2015) {
       {
         id: '3-2',
         title: 'Конструкция "switch"',
-        code: `switch (browser) {
+        trainingCodeText: `switch (browser) {
   case 'Edge':
     alert( "You've got the Edge!" );
     break;
@@ -188,7 +188,7 @@ if (year < 2015) {
       {
         id: '3-3',
         title: 'Цикл "for..in"',
-        code: `let user = {
+        trainingCodeText: `let user = {
   name: "John",
   age: 30,
   isAdmin: true
@@ -205,7 +205,7 @@ for (let key in user) {
       {
         id: '3-4',
         title: 'Рекурсия',
-        code: `let company = {
+        trainingCodeText: `let company = {
   sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
   development: {
     sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
@@ -237,7 +237,7 @@ alert(sumSalaries(company)); // 6700`,
         id: '4-1',
         title: 'Простой пример',
         maxUsersSpeed: 100,
-        code: 'const firstCode = "Hello world"',
+        trainingCodeText: 'const firstCode = "Hello world"',
       },
     ],
   },

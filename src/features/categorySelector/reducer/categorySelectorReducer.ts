@@ -7,7 +7,7 @@ const initialState = {
         {
           id: '',
           title: '',
-          code: '',
+          trainingCodeText: '',
           maxUsersSpeed: 0,
         },
       ],
@@ -81,7 +81,7 @@ export type CategoryType = {
 export type SubCategoryType = {
   id: string;
   title: string;
-  code: string;
+  trainingCodeText: string;
   maxUsersSpeed: number;
 };
 

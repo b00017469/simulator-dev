@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import { useDispatch } from 'react-redux';
 
-import { Nullable } from '../../../common/types/Nullable';
+import { useAppSelector } from '../../../common/hooks/useAppSelector';
+import { useTypingSpeed } from '../../../common/hooks/useTypingSpeed';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
-import { calculateSpeed } from '../../../common/utils/calculateSpeed';
-import { setMistakesCount, setSpeed } from '../reducer/trainingReducer';
+import { setSpeed, updateStats } from '../reducer/trainingReducer';
 
 import style from './StatsPanel.module.css';
 
@@ -13,50 +13,30 @@ type Props = {
   charactersCount: number;
   isPause: boolean;
   isEndTraining: boolean;
-  mistakesCount: number;
 };
 
 export const StatsPanel = ({
   charactersCount,
   isPause,
   isEndTraining,
-  mistakesCount,
 }: Props): ReturnComponentType => {
   const dispatch = useDispatch();
 
-  const [startTime, setStartTime] = useState<Nullable<number>>(null);
-  const [startPauseTime, setStartPauseTime] = useState<Nullable<number>>(null);
-  const [pauseTime, setPauseTime] = useState<number>(0);
-  const [currentSpeed, setCurrentSpeed] = useState<number>(0);
+  const mistakesCount = useAppSelector(
+    state => state.training.userCode.currentMistakesCount,
+  );
 
-  useEffect(() => {
-    if (charactersCount === 0) {
-      setCurrentSpeed(0);
-      setStartTime(null);
-      setPauseTime(0);
-    }
-
-    if (charactersCount === 1) setStartTime(Date.now());
-
-    if (charactersCount > 1 && startTime)
-      setCurrentSpeed(calculateSpeed(startTime, pauseTime, charactersCount));
-  }, [charactersCount, startTime]);
-
-  useEffect(() => {
-    if (isPause) {
-      setStartPauseTime(Date.now());
-    }
-    if (!isPause && startPauseTime) {
-      setPauseTime(Date.now() - startPauseTime + pauseTime);
-    }
-  }, [isPause]);
+  const currentSpeed = useTypingSpeed(charactersCount, isPause);
 
   useEffect(() => {
     if (isEndTraining) {
-      dispatch(setMistakesCount(mistakesCount));
-      dispatch(setSpeed(currentSpeed));
+      dispatch(updateStats(currentSpeed, mistakesCount));
     }
   }, [isEndTraining]);
+
+  useEffect(() => {
+    dispatch(setSpeed(currentSpeed));
+  }, [currentSpeed]);
 
   return (
     <div className={style.panel}>
