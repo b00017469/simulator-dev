@@ -1,23 +1,24 @@
 import React, { ChangeEvent, LegacyRef } from 'react';
 
+import { useAppSelector } from '../../hooks/useAppSelector';
 import { ReturnComponentType } from '../../types/ReturnComponentType';
 import { getLineNumbers } from '../../utils/getLineNumbers';
 
 import styles from './Textarea.module.css';
 
 type Props = {
-  value: string;
   onChangeFunc: (value: string) => void;
   readonly: boolean;
   textAreaRef: LegacyRef<HTMLTextAreaElement>;
 };
 
 export const Textarea = ({
-  value,
   onChangeFunc,
   readonly,
   textAreaRef,
 }: Props): ReturnComponentType => {
+  const userCodeText = useAppSelector(state => state.training.userCode.userCodeText);
+
   const onChangeCallback = (e: ChangeEvent<HTMLTextAreaElement>): void => {
     onChangeFunc(e.currentTarget.value);
   };
@@ -25,7 +26,7 @@ export const Textarea = ({
   return (
     <div className={styles.textField}>
       <div className={styles.numbers}>
-        {getLineNumbers(value).map(line => (
+        {getLineNumbers(userCodeText).map(line => (
           <span key={line} />
         ))}
       </div>
@@ -34,7 +35,7 @@ export const Textarea = ({
         <code>
           <textarea
             ref={textAreaRef}
-            value={value}
+            value={userCodeText}
             onChange={onChangeCallback}
             readOnly={readonly}
             onPaste={e => e.preventDefault()}

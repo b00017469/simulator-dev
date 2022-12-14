@@ -1,0 +1,19 @@
+.selection {
+    color: black;
+}
+
+.header {
+    padding: 15px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 24px;
+    border-bottom: 1px solid #ad687a;
+}
+
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+}

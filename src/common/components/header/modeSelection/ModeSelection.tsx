@@ -10,6 +10,8 @@ import { ReturnComponentType } from '../../../types/ReturnComponentType';
 import { Button } from '../../button/Button';
 import { Modal } from '../../modal/Modal';
 
+import style from './ModeSelection.module.css';
+
 export const ModeSelection = (): ReturnComponentType => {
   const dispatch = useAppDispatch();
 
@@ -28,13 +30,13 @@ export const ModeSelection = (): ReturnComponentType => {
   };
 
   return (
-    <div>
+    <div className={style.selection}>
       <button type="button" onClick={openModal}>
         {mode}
       </button>
 
-      <Modal show={modalIsOpen}>
-        <h3>Вибери режим</h3>
+      <Modal show={modalIsOpen} enableBackground modalStyle={style.modal}>
+        <h3 className={style.header}>Вибери режим</h3>
 
         <button type="button" onClick={() => setNewMode('instant check mode')}>
           Мгновеная проверка кода

@@ -29,3 +29,10 @@
     font-size: 17px;
     line-height: 19px;
 }
+
+.mode{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+}

@@ -3,6 +3,7 @@ import React from 'react';
 import { ReturnComponentType } from '../../types/ReturnComponentType';
 
 import style from './Header.module.css';
+import { ModeSelection } from './modeSelection/ModeSelection';
 
 export const Header = (): ReturnComponentType => {
   return (
@@ -15,7 +16,9 @@ export const Header = (): ReturnComponentType => {
         Simulator<span>Dev</span>
       </div>
 
-      {/* <ModeSelection /> */}
+      <div className={style.mode}>
+        <ModeSelection />
+      </div>
     </header>
   );
 };

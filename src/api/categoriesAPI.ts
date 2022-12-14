@@ -1,4 +1,4 @@
-import { codeCategories } from '../db/codeCategories';
+import { codeCategories } from './db/codeCategories';
 
 export const categoriesAPI = {
   getCategoriesData() {
