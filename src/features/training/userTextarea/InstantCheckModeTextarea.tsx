@@ -17,7 +17,7 @@ type Props = {
   setIsOpenModal: (isOpen: boolean) => void;
 };
 
-export const InstantCheckTextarea = ({
+export const InstantCheckModeTextarea = ({
   textAreaRef,
   setIsOpenModal,
 }: Props): ReturnComponentType => {

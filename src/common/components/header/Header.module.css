@@ -17,7 +17,7 @@
     margin-bottom: 2px;
 }
 
-.logo{
+.logo {
     display: flex;
     align-items: center;
     height: 37px;
@@ -30,7 +30,7 @@
     line-height: 19px;
 }
 
-.mode{
+.mode {
     position: absolute;
     top: 15px;
     right: 20px;

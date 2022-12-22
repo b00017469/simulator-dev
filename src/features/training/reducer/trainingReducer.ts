@@ -15,6 +15,7 @@ const initialState = {
     currentRightChar: '',
     currentSpeed: 0,
     currentMistakesCount: 0,
+    linesWithMistakes: [] as number[],
   },
   stats: {
     bestUserSpeed: 0,
@@ -80,6 +81,12 @@ export const trainingReducer = (
     case 'TRAINING/MODE-CHANGED': {
       return { ...state, mode: action.payload };
     }
+    case 'TRAINING/LINES-WITH-MISTAKES-CHANGED': {
+      return {
+        ...state,
+        userCode: { ...state.userCode, linesWithMistakes: action.payload },
+      };
+    }
     default:
       return state;
   }
@@ -103,6 +110,8 @@ export const updateStats = (speedTyping: number, mistakesCount: number) =>
 export const clearUserCode = () => ({ type: 'TRAINING/USER-CODE-CLEARED' } as const);
 export const changeMode = (mode: ModeTyping) =>
   ({ type: 'TRAINING/MODE-CHANGED', payload: mode } as const);
+export const setLinesWithMistakes = (linesWithMistakes: number[]) =>
+  ({ type: 'TRAINING/LINES-WITH-MISTAKES-CHANGED', payload: linesWithMistakes } as const);
 
 type InitialState = typeof initialState;
 
@@ -114,6 +123,7 @@ export type TrainingReducerActions =
   | ReturnType<typeof setCurrentChars>
   | ReturnType<typeof updateStats>
   | ReturnType<typeof clearUserCode>
+  | ReturnType<typeof setLinesWithMistakes>
   | ReturnType<typeof changeMode>;
 
 export type ModeTyping = 'instant check mode' | 'hacker mode' | 'end check mode';

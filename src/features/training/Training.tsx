@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { TextareaReadOnly } from '../../common/components/textarea/textareaReadOnly/TextareaReadOnly';
+import { TrainingCodeField } from '../../common/components/textarea/trainingCodeField/TrainingCodeField';
 import { useAppSelector } from '../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../common/types/ReturnComponentType';
 
@@ -10,9 +11,9 @@ import { MessageModal } from './messageModal/MessageModal';
 import { clearUserCode } from './reducer/trainingReducer';
 import { StatsPanel } from './statsPanel/StatsPanel';
 import styles from './Training.module.css';
-import { EndCheckTextarea } from './userTextarea/EndCheckTextarea';
-import { HackerTextarea } from './userTextarea/HackerTextarea';
-import { InstantCheckTextarea } from './userTextarea/InstantCheckTextarea';
+import { EndCheckModeTextarea } from './userTextarea/EndCheckModeTextarea';
+import { HackerModeTextarea } from './userTextarea/HackerModeTextarea';
+import { InstantCheckModeTextarea } from './userTextarea/InstantCheckModeTextarea';
 
 export const Training = (): ReturnComponentType => {
   const dispatch = useDispatch();
@@ -23,6 +24,9 @@ export const Training = (): ReturnComponentType => {
     state => state.training.trainingCode,
   );
   const userCodeText = useAppSelector(state => state.training.userCode.userCodeText);
+  const linesWithMistakes = useAppSelector(
+    state => state.training.userCode.linesWithMistakes,
+  );
   const mode = useAppSelector(state => state.training.mode);
 
   const isEndTraining =
@@ -47,13 +51,23 @@ export const Training = (): ReturnComponentType => {
     <div className={styles.trainingPanel}>
       <h2>{title}</h2>
 
-      <TextareaReadOnly value={trainingCodeText} />
+      {mode !== 'end check mode' ? (
+        <TextareaReadOnly value={trainingCodeText} />
+      ) : (
+        <TrainingCodeField
+          value={trainingCodeText}
+          linesWithMistakes={linesWithMistakes}
+        />
+      )}
 
       {mode === 'instant check mode' && (
-        <InstantCheckTextarea textAreaRef={textAreaRef} setIsOpenModal={setIsOpenModal} />
+        <InstantCheckModeTextarea
+          textAreaRef={textAreaRef}
+          setIsOpenModal={setIsOpenModal}
+        />
       )}
-      {mode === 'hacker mode' && <HackerTextarea textAreaRef={textAreaRef} />}
-      {mode === 'end check mode' && <EndCheckTextarea textAreaRef={textAreaRef} />}
+      {mode === 'hacker mode' && <HackerModeTextarea textAreaRef={textAreaRef} />}
+      {mode === 'end check mode' && <EndCheckModeTextarea textAreaRef={textAreaRef} />}
 
       {mode !== 'end check mode' && (
         <MessageModal

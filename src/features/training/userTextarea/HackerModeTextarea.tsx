@@ -12,7 +12,7 @@ type Props = {
   textAreaRef: LegacyRef<HTMLTextAreaElement>;
 };
 
-export const HackerTextarea = ({ textAreaRef }: Props): ReturnComponentType => {
+export const HackerModeTextarea = ({ textAreaRef }: Props): ReturnComponentType => {
   const dispatch = useDispatch();
 
   const trainingCodeText = useAppSelector(

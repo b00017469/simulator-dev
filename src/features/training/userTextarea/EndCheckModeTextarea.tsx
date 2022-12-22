@@ -8,13 +8,13 @@ import { Textarea } from '../../../common/components/textarea/Textarea';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
 import { verifyUserCode } from '../../../common/utils/verifyUserCode';
-import { setUserCodeText } from '../reducer/trainingReducer';
+import { setLinesWithMistakes, setUserCodeText } from '../reducer/trainingReducer';
 
 type Props = {
   textAreaRef: LegacyRef<HTMLTextAreaElement>;
 };
 
-export const EndCheckTextarea = ({ textAreaRef }: Props): ReturnComponentType => {
+export const EndCheckModeTextarea = ({ textAreaRef }: Props): ReturnComponentType => {
   const dispatch = useDispatch();
 
   const [modalIsOpen, setIsOpenModal] = useState(false);
@@ -29,7 +29,12 @@ export const EndCheckTextarea = ({ textAreaRef }: Props): ReturnComponentType =>
   };
 
   const checkUserCode = (): void => {
-    verifyUserCode(userCodeText, trainingCodeText);
+    const result = verifyUserCode(userCodeText, trainingCodeText);
+
+    dispatch(setUserCodeText(result.userCode));
+    dispatch(setLinesWithMistakes(result.linesWithMistakes));
+
+    setIsOpenModal(!!result.isDifference);
   };
 
   return (

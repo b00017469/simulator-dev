@@ -11,7 +11,7 @@
 }
 
 .textField pre {
-    text-align: center;
+    text-align: left;
     white-space: pre-wrap;
     width: 100%;
 }
@@ -38,6 +38,11 @@
 
 .code {
     height: 100%;
-    padding: 18px 12px;
+    padding-top: 18px;
     text-align: left;
+}
+
+.mistake {
+    display: block;
+    background-color: #FF275E26;
 }
