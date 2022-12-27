@@ -7,7 +7,7 @@ import { useAppSelector } from '../../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../../common/types/ReturnComponentType';
 import { getResultMistakesMessage } from '../../../../common/utils/getResultMistakesMessage';
 import { getResultSpeedMessage } from '../../../../common/utils/getResultSpeedMessage';
-import { clearUserCode } from '../../reducer/trainingReducer';
+import { clearAll, clearUserCode } from '../../reducer/trainingReducer';
 
 import style from './Message.module.css';
 
@@ -31,6 +31,11 @@ export const FinalMessage = ({ closeModal }: Props): ReturnComponentType => {
     closeModal();
   };
 
+  const reset = (): void => {
+    dispatch(clearAll());
+    closeModal();
+  };
+
   return (
     <div className={style.wrapper}>
       <div className={style.header}>Ваш результат</div>
@@ -46,8 +51,8 @@ export const FinalMessage = ({ closeModal }: Props): ReturnComponentType => {
           Пройти заново
         </Button>
 
-        <Button type="button" onClick={closeModal}>
-          Следующий пример
+        <Button type="button" onClick={reset}>
+          Выбрать новый
         </Button>
       </div>
     </div>

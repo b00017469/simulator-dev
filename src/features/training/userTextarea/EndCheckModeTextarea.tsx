@@ -7,6 +7,7 @@ import { Modal } from '../../../common/components/modal/Modal';
 import { Textarea } from '../../../common/components/textarea/Textarea';
 import { useAppSelector } from '../../../common/hooks/useAppSelector';
 import { ReturnComponentType } from '../../../common/types/ReturnComponentType';
+import { getResultMessage } from '../../../common/utils/getResultMessage';
 import { verifyUserCode } from '../../../common/utils/verifyUserCode';
 import { setLinesWithMistakes, setUserCodeText } from '../reducer/trainingReducer';
 
@@ -18,6 +19,7 @@ export const EndCheckModeTextarea = ({ textAreaRef }: Props): ReturnComponentTyp
   const dispatch = useDispatch();
 
   const [modalIsOpen, setIsOpenModal] = useState(false);
+  const [message, setMessage] = useState('');
 
   const trainingCodeText = useAppSelector(
     state => state.training.trainingCode.trainingCodeText,
@@ -34,7 +36,8 @@ export const EndCheckModeTextarea = ({ textAreaRef }: Props): ReturnComponentTyp
     dispatch(setUserCodeText(result.userCode));
     dispatch(setLinesWithMistakes(result.linesWithMistakes));
 
-    setIsOpenModal(!!result.isDifference);
+    setMessage(getResultMessage(result.isDifference, result.isDifferentNumberOfLines));
+    setIsOpenModal(true);
   };
 
   return (
@@ -48,7 +51,8 @@ export const EndCheckModeTextarea = ({ textAreaRef }: Props): ReturnComponentTyp
       <Button onClick={checkUserCode}>Проверить</Button>
 
       <Modal show={modalIsOpen} enableBackground>
-        <div>Check string count</div>
+        <div>{message}</div>
+        <div>Вы всегда можете выбрать другой пример.</div>
         <Button onClick={() => setIsOpenModal(false)}>Ok</Button>
       </Modal>
     </div>

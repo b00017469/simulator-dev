@@ -78,6 +78,14 @@ export const trainingReducer = (
     case 'TRAINING/USER-CODE-CLEARED': {
       return { ...state, userCode: { ...initialState.userCode } };
     }
+    case 'TRAINING/ALL-CLEARED': {
+      return {
+        ...state,
+        userCode: { ...initialState.userCode },
+        trainingCode: { ...initialState.trainingCode },
+        stats: { ...initialState.stats },
+      };
+    }
     case 'TRAINING/MODE-CHANGED': {
       return { ...state, mode: action.payload };
     }
@@ -108,6 +116,7 @@ export const setCurrentChars = (currentUserChar: string, currentRightChar: strin
 export const updateStats = (speedTyping: number, mistakesCount: number) =>
   ({ type: 'TRAINING/STATS-UPDATED', payload: { speedTyping, mistakesCount } } as const);
 export const clearUserCode = () => ({ type: 'TRAINING/USER-CODE-CLEARED' } as const);
+export const clearAll = () => ({ type: 'TRAINING/ALL-CLEARED' } as const);
 export const changeMode = (mode: ModeTyping) =>
   ({ type: 'TRAINING/MODE-CHANGED', payload: mode } as const);
 export const setLinesWithMistakes = (linesWithMistakes: number[]) =>
@@ -123,6 +132,7 @@ export type TrainingReducerActions =
   | ReturnType<typeof setCurrentChars>
   | ReturnType<typeof updateStats>
   | ReturnType<typeof clearUserCode>
+  | ReturnType<typeof clearAll>
   | ReturnType<typeof setLinesWithMistakes>
   | ReturnType<typeof changeMode>;
 
